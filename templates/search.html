@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="text-gray-600 body-font overflow-hidden">
+    <div class="container px-5 py-24 mx-auto">
+        <div class="-my-8 divide-y-2 divide-gray-100">
+            <h1 class="text-xl">Search Results</h1>
+            {% for users in username_profile_list %}
+            <div class="py-8 flex flex-wrap md:flex-nowrap">
+                <div class="md:flex-grow">
+                    <img src="{{users.profile_image.url }}" alt="">
+                    <h2 class="text-2xl font-medium text-gray-900 title-font mb-2"><a href="{% url 'profile' users.user %}">{{ users.user }}</a></h2>
+                    <p class="leading-relaxed">{{ users.location }}</p> 
+                    <p class="leading-relaxed">{{ users.bio }}</p> 
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock content %}

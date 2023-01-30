@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="text-gray-600 body-font ">
+    <div class="container px-5 py-10 mx-auto">
+        <div class="lg:w-1/2 md:w-2/3 mx-auto p-8 bg-gray-50 rounded-lg border-2 border-gray-300">
+            <h1 class="sm:text-3xl text-xl font-medium title-font mb-4 text-gray-500">
+                Account Settings</h1>
+            <div class="mb-5">
+                {% for message in messages %}
+                <h5 style="color:rgb(239, 98, 98)">!!! {{message}}</h5>
+                {% endfor %}
+            </div>
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="relative mb-4">
+                    <label for="location" class="leading-7 text-sm text-gray-600">Username</label>
+                    <input type="text" id="location" name="location" value="{{user.username}}"
+                        class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" disabled>
+                </div>
+                <div class="relative mb-4">
+                    <label for="image" class="leading-7 text-sm text-gray-600">Profile Image</label>
+                    <img src="{{user_profile.profile_image.url}}" width="75" height="75" alt="" class="mb-3">
+                    <input type="file" id="image" name="image"
+                        class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                </div>
+                <div class="relative mb-4">
+                    <label for="bio" class="leading-7 text-sm text-gray-600">Bio</label>
+                    <textarea id="bio" rows="3" name="bio"
+                        class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                {{ user_profile.bio }}
+                </textarea>
+                </div>
+                <div class="relative mb-4">
+                    <label for="location" class="leading-7 text-sm text-gray-600">Location</label>
+                    <input type="text" id="location" name="location" value="{{user_profile.location}}"
+                        class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                </div>
+                <button
+                    class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none bg-red-500 rounded text-base">
+                    <a href="{% url 'home'%}">Cancel</a></button>
+                <button
+                    class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none bg-indigo-500 rounded text-base">Save</button>
+                </p>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
